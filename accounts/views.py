@@ -7,9 +7,16 @@ from rest_framework.decorators import api_view
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from drf_yasg.utils import swagger_auto_schema
+
 def index(request):
     return HttpResponse('My app is running!')
 
+@swagger_auto_schema(   
+    method='POST',  
+    request_body=UserRegistrationSerializer,    
+    responses={201: 'User created', 400: 'Bad Request'}
+)
 @api_view(['POST'])
 def register(request):
     if request.method == 'POST':
@@ -32,6 +39,11 @@ def register(request):
 #                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@swagger_auto_schema(
+    method='POST',  
+    request_body=TokenSerializer,    
+    responses={200: 'Login successful', 400: 'Bad Request', 401: 'Invalid credentials'}
+)
 @api_view(['POST'])
 def login(request):
     if request.method == 'POST':

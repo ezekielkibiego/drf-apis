@@ -7,7 +7,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import MpesaRequest, MpesaResponse, MpesaCallback
 from .serializers import MpesaRequestSerializer, MpesaResponseSerializer
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
+@swagger_auto_schema(method='POST', request_body=MpesaRequestSerializer) 
 @api_view(['POST'])
 def stk_push(request):
     serializer = MpesaRequestSerializer(data=request.data)
