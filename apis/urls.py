@@ -22,4 +22,5 @@ urlpatterns = [
     path('students/', include('students.urls')),
     path('accounts/', include('accounts.urls')),
     path('mpesa/', include('mpesa.urls')),
+    path('weather/', include('openweather.urls')),
 ]

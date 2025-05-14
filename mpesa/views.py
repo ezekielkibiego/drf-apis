@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from .models import MpesaRequest, MpesaResponse, MpesaCallback
 from .serializers import MpesaRequestSerializer, MpesaResponseSerializer
 
-
 @api_view(['POST'])
 def stk_push(request):
     serializer = MpesaRequestSerializer(data=request.data)
@@ -75,6 +74,7 @@ def initiate_stk_push(mpesa_request):
         response = requests.post("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest", json=payload, headers=headers)
         response.raise_for_status()
         return response.json()
+        
     except requests.exceptions.RequestException as e:
         print("STK push request failed:", str(e))
         raise Exception(f"STK push request failed: {getattr(e.response, 'text', str(e))}")

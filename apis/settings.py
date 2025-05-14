@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'mpesa',
+    'openweather',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,5 @@ MPESA_CONSUMER_SECRET = config('MPESA_CONSUMER_SECRET')
 MPESA_SHORTCODE = config('MPESA_SHORTCODE')
 MPESA_PASSKEY =  config('MPESA_PASSKEY')
 MPESA_CALLBACK_URL= config('MPESA_CALLBACK_URL')
+
+API_KEY = config('OPENWEATHERMAP_API_KEY')
